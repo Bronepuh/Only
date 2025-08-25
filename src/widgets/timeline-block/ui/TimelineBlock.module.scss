@@ -1,0 +1,446 @@
+.block {
+	background: var(--bg);
+	overflow-x: clip;
+}
+
+/* Контейнер растягивается на весь экран и становится flex-колонкой */
+.container {
+	position: relative;
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 190px 0 24px;
+	min-height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+
+	border-left: 1px solid var(--border);
+	border-right: 1px solid var(--border);
+}
+
+/* Центральная вертикальная линия — по всей высоте контейнера */
+.container::before {
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 50%;
+	width: 1px;
+	background: var(--border);
+	transform: translateX(-0.5px);
+	z-index: 0;
+}
+
+/* Заголовок */
+.header {
+	position: absolute;
+	top: 170px;
+	left: 0;
+
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+	z-index: 1;
+}
+
+.titleBar {
+	width: 6px;
+	height: 120px;
+	border-radius: 3px;
+	background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-pink) 100%);
+}
+
+.title {
+	margin: 0;
+	padding-left: 57px;
+	font-size: 56px;
+	line-height: 120%;
+	color: var(--text);
+}
+
+/* Тело */
+.wrapper {
+	position: relative;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	z-index: 1;
+}
+
+/* Сцена с окружностью */
+.stage {
+	position: relative;
+	min-height: 580px;
+	margin-bottom: 60px;
+}
+
+/* Большие годы */
+.rangeOverlay {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	pointer-events: none;
+	padding: 0 8px;
+	gap: 50px;
+	z-index: 2;
+}
+
+.from,
+.to {
+	font-weight: 900;
+	line-height: 0.9;
+	font-size: clamp(96px, 16vw, 200px);
+	letter-spacing: 0.5px;
+}
+.from {
+	color: var(--accent-blue);
+}
+.to {
+	color: var(--accent-pink);
+}
+
+/* Центрируем кольцо */
+.ringHolder {
+	position: relative;
+	display: grid;
+	place-items: center;
+	padding-top: 24px;
+	z-index: 2;
+}
+
+/* Переключатель дат */
+.controls {
+	position: absolute;
+	bottom: -15px;
+	left: 80px;
+	display: flex;
+	flex-wrap: wrap;
+	width: 120px;
+	height: 88px;
+	z-index: 1;
+}
+
+.ds {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.dsDate {
+	font-weight: 600;
+	font-size: 14px;
+	color: var(--text-weak);
+	letter-spacing: 0.02em;
+	margin-bottom: 10px;
+}
+
+.dsNav {
+	display: flex;
+	gap: 18px;
+}
+
+.dsBtn {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: transparent;
+	border: 1px solid var(--border-strong);
+	box-shadow: var(--shadow-1);
+	color: var(--text);
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+	transition: background 0.2s, transform 0.2s;
+	&:hover {
+		background: var(--surface-hover);
+	}
+	&:active {
+		transform: translateY(1px);
+	}
+	svg {
+		display: block;
+	}
+}
+
+/* Слайдер */
+.sliderWrap {
+	position: relative;
+	z-index: 1;
+	padding-left: 80px;
+	padding-right: 80px;
+	padding-top: 10px;
+}
+
+/* внутренности свайпера */
+.swiper :global(.swiper-wrapper) {
+	align-items: stretch;
+}
+.slide {
+	height: auto;
+}
+
+.card {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.year {
+	font-family: "Bebas Neue", Arial, sans-serif;
+	font-weight: 400;
+	font-size: 25px;
+	line-height: 120%;
+	letter-spacing: 0;
+	color: var(--accent-blue);
+	margin-bottom: 8px;
+}
+
+.cardTitle {
+	font-weight: 700;
+	margin: 0;
+	color: var(--text);
+}
+.cardText {
+	margin: 0;
+	color: var(--text);
+	font-size: 20px;
+	line-height: 30px;
+}
+
+/* Стрелки слайдера */
+.swNav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: var(--surface);
+	border: 1px solid var(--border-strong);
+	box-shadow: var(--shadow-1);
+	color: var(--text);
+
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+	transition: background 0.2s, transform 0.2s, opacity 0.2s;
+
+	&:hover {
+		background: var(--surface-hover);
+	}
+	&:active {
+		transform: translateY(calc(-50% + 1px));
+	}
+
+	&.swiper-button-disabled {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		display: none;
+	}
+
+	&:disabled {
+		display: none;
+	}
+}
+.swPrev {
+	top: calc(50% + 14px);
+	left: 35px;
+}
+.swNext {
+	top: calc(50% + 14px);
+	right: 40px;
+}
+
+/* Пагинация-точки */
+.swPagination {
+	margin-top: 14px;
+	text-align: center;
+}
+.swPagination :global(.swiper-pagination-bullet) {
+	width: 6px;
+	height: 6px;
+	opacity: 0.4;
+	background: var(--bullet);
+	margin: 0 5px !important;
+}
+.swPagination :global(.swiper-pagination-bullet-active) {
+	opacity: 1;
+}
+
+.mobilePagination {
+	display: none;
+}
+
+/* ===== MOBILE ≤600px ===== */
+@media (max-width: 600px) {
+	.container {
+		max-width: 100%;
+		min-height: auto;
+		padding: 96px 16px 20px;
+		border-left: none;
+		border-right: none;
+	}
+	.container::before {
+		display: none;
+	}
+
+	.header {
+		top: 58px;
+		left: -5px;
+
+		span {
+			display: none;
+		}
+	}
+
+	.titleBar {
+		width: 4px;
+		height: 64px;
+		border-radius: 2px;
+	}
+
+	.title {
+		padding-left: 24px;
+		font-size: 20px;
+		line-height: 120%;
+	}
+
+	.wrapper {
+		gap: 12px;
+	}
+
+	.stage {
+		min-height: 165px; /* меньше, чтобы не было пустоты */
+		margin-bottom: 20px;
+	}
+
+	.rangeOverlay {
+		top: calc(50% + 20px);
+		gap: 20px;
+		padding: 0;
+
+		span {
+			font-size: 56px;
+		}
+	}
+	.from,
+	.to {
+		font-weight: 900;
+		line-height: 0.95;
+		font-size: clamp(40px, 14vw, 72px);
+		letter-spacing: 0.5px;
+	}
+
+	/* блок даты/стрелок */
+	.controls {
+		display: none;
+	}
+
+	.ds {
+		gap: 8px;
+	}
+	.dsDate {
+		margin: 0;
+		font-size: 12px;
+	}
+	.dsNav {
+		gap: 10px;
+	}
+	.dsBtn {
+		width: 25px;
+		height: 25px;
+	}
+
+	/* Слайдер: по 1 карточке и аккуратный разделитель сверху */
+	.sliderWrap {
+		padding-left: 0;
+		padding-right: 0;
+		padding-top: 20px;
+		border-top: 1px solid var(--border); /* единственная линия-разделитель */
+	}
+
+	.swiper {
+		margin-bottom: 78px;
+	}
+
+	/* стрелки прячем — свайп удобнее */
+	.swNav {
+		display: none !important;
+	}
+
+	/* типографика карточек компактнее */
+	.card {
+		gap: 6px;
+	}
+	.year {
+		font-size: 14px;
+		line-height: 1;
+		letter-spacing: 0.02em;
+		margin-bottom: 6px;
+		color: var(--accent-blue);
+	}
+	.cardText {
+		font-size: 16px;
+		line-height: 24px;
+		color: var(--text);
+	}
+
+	.mobilePagination {
+		position: relative;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		.controls {
+			position: relative;
+			top: 0;
+			left: 0;
+			display: flex;
+		}
+		/* пагинация видна на мобилке */
+		.swPagination {
+			position: relative;
+			display: flex;
+			left: 50px !important;
+		}
+	}
+}
+
+/* размещение переключателя темы в этом блоке (если используете тут) */
+.themeToggle {
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	z-index: 10;
+}
+@media (max-width: 600px) {
+	.themeToggle {
+		top: 16px;
+		right: 16px;
+		transform: scale(0.9);
+	}
+}
+
+@media (min-width: 601px) {
+	.stage::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+		height: 1px;
+		background: var(--border);
+		transform: translateY(-0.5px); /* чёткий пиксель */
+		pointer-events: none;
+		z-index: 0; /* позади чисел и кольца */
+	}
+}

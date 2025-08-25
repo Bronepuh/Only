@@ -1,0 +1,93 @@
+.wrap {
+	position: relative;
+	margin: 0 auto;
+}
+
+.ringGrid {
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	border: 1px solid var(--border);
+}
+
+.ring {
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	transition: transform 2000ms cubic-bezier(0.2, 0.7, 0.2, 1);
+	z-index: 30;
+}
+
+/* кнопка-точка */
+.dot {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	background: transparent;
+	border: none;
+	padding: 0;
+	outline: none;
+
+	/* маленький кружок — через псевдоэлемент */
+	&::before {
+		content: "";
+		display: block;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--ring-dot);
+		border: 2px solid var(--ring-dot-outline);
+		box-shadow: 0 0 0 1px var(--border-strong);
+		transition: all 220ms ease;
+	}
+
+	.day {
+		position: absolute;
+		opacity: 0;
+		transform: scale(0.6);
+		transition: opacity 160ms ease, transform 160ms ease;
+		font: 700 14px/1 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+		user-select: none;
+		pointer-events: none;
+		color: var(--text);
+	}
+
+	&:hover::before,
+	&:focus-visible::before {
+		width: 54px;
+		height: 54px;
+		background: var(--surface-hover);
+		border: 1px solid var(--border-strong);
+		box-shadow: var(--shadow-2);
+	}
+
+	&:hover .day,
+	&:focus-visible .day {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* активная точка */
+.active::before {
+	width: 50px;
+	height: 50px;
+	background: var(--surface-hover);
+	border: 1px solid var(--border-strong);
+	box-shadow: var(--shadow-2);
+}
+
+.active .day {
+	opacity: 1;
+	transform: none;
+}
+
+@media (max-width: 600px) {
+	.wrap {
+		display: none;
+	}
+}

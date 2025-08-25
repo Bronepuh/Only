@@ -1,0 +1,57 @@
+.switch {
+	position: absolute;
+	top: 50px;
+	right: 40px;
+	width: 66px;
+	height: 34px;
+	border-radius: 999px;
+	border: 1px solid var(--border-strong);
+	background: var(--surface);
+	box-shadow: var(--shadow-1);
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 8px;
+	cursor: pointer;
+	outline: none;
+	transition: background 0.25s ease, border-color 0.25s ease, transform 0.1s ease;
+	z-index: 1000;
+
+	&:hover {
+		background: var(--surface-hover);
+	}
+	&:active {
+		transform: translateY(1px);
+	}
+
+	@media (max-width: 600px) {
+		right: 0;
+	}
+}
+
+.iconSun,
+.iconMoon {
+	font-size: 14px;
+	line-height: 1;
+	user-select: none;
+	pointer-events: none;
+	opacity: 0.75;
+}
+
+.knob {
+	position: absolute;
+	top: 50%;
+	left: 6px;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background: linear-gradient(180deg, var(--surface) 0%, var(--surface-hover) 100%);
+	border: 1px solid var(--border-strong);
+	box-shadow: var(--shadow-2);
+	transform: translate(0, -50%);
+	transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.dark .knob {
+	transform: translate(calc(66px - 6px - 26px - 2px), -50%); /* вправо */
+}

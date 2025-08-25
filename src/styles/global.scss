@@ -1,0 +1,73 @@
+:root {
+	/* LIGHT (default) */
+	--bg: #eef2f8;
+	--surface: #ffffff;
+	--surface-hover: #f4f6ff;
+
+	--text: #3a4563;
+	--text-weak: rgba(28, 34, 66, 0.55);
+
+	--border: rgba(28, 34, 66, 0.12);
+	--border-strong: rgba(28, 34, 66, 0.25);
+
+	--shadow-1: 0 2px 8px rgba(28, 34, 66, 0.08);
+	--shadow-2: 0 6px 18px rgba(28, 34, 66, 0.12);
+
+	--accent-blue: #5448ff;
+	--accent-pink: #e3559b;
+
+	--ring-dot: #2b2f55;
+	--ring-dot-outline: #ffffff;
+
+	--bullet: #2b2f55;
+}
+
+:root[data-theme="dark"] {
+	--bg: #0e1220;
+	--surface: #131a2a;
+	--surface-hover: #1b2438;
+
+	--text: #e0e6ff;
+	--text-weak: rgba(224, 230, 255, 0.6);
+
+	--border: rgba(201, 216, 255, 0.12);
+	--border-strong: rgba(201, 216, 255, 0.24);
+
+	--shadow-1: 0 2px 8px rgba(0, 0, 0, 0.45);
+	--shadow-2: 0 6px 18px rgba(0, 0, 0, 0.55);
+
+	--accent-blue: #6b73ff;
+	--accent-pink: #ff6fa8;
+
+	--ring-dot: #c8d0ff;
+	--ring-dot-outline: #0e1220;
+
+	--bullet: #c8d0ff;
+}
+
+html {
+	color-scheme: light dark;
+}
+html * {
+	transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: "PT Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+	background: var(--bg);
+	color: var(--fg);
+}
+.app {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 40px 20px;
+}

@@ -56,7 +56,7 @@ module.exports = merge(common, {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "assets/[name].[contenthash].js",
-		publicPath: "/<Only>/",
+		publicPath: "/Only/",
 		clean: true,
 	},
 });

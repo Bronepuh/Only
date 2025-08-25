@@ -52,4 +52,10 @@ module.exports = merge(common, {
 		],
 	},
 	plugins: [new MiniCssExtractPlugin({ filename: "assets/css/[name].[contenthash].css" })],
+	output: {
+		path: path.resolve(__dirname, "dist"),
+		filename: "assets/[name].[contenthash].js",
+		publicPath: "/<Only>/",
+		clean: true,
+	},
 });
